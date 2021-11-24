@@ -1,6 +1,7 @@
 import "tailwindcss/tailwind.css";
 import Head from "next/head";
 import { ThemeProvider } from "styled-components";
+import { ServerStyleSheet } from "styled-components";
 
 /**
  * Tema de cores da aplicação
@@ -37,3 +38,15 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp;
+
+export function getInitialProps({ renderPage }) {
+  const sheet = new ServerStyleSheet();
+
+  const page = renderPage(
+    (App) => (props) => sheet.collectStyles(<App {...props} />)
+  );
+
+  const styleTags = sheet.getStyleElement();
+
+  return { ...page, styleTags };
+}
