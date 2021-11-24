@@ -16,10 +16,10 @@ const Header: React.FC = () => {
       </Link>
       <div>
         <Link href={`/cart`}>
-          <CartButton>
+          <CartButton data-testid="button-cart">
             <MdShoppingCart />
 
-            {products.length > 0 && (
+            {products && products.length > 0 && (
               <AmoutProducts>{products.length}</AmoutProducts>
             )}
           </CartButton>

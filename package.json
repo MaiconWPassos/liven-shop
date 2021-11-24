@@ -3,22 +3,35 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "jest --runInBand --detectOpenHandles ",
+    "coverage": "jest --coverage"
   },
   "dependencies": {
     "@types/react-icons": "^3.0.0",
     "axios": "^0.24.0",
     "next": "latest",
+    "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
+    "react-inner-image-zoom": "^2.1.0",
     "styled-components": "^5.3.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@testing-library/jest-dom": "^5.15.1",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/react-hooks": "^7.0.2",
     "@types/axios": "^0.14.0",
+    "@types/jest": "^27.0.3",
     "@types/react": "^17.0.36",
+    "@types/react-inner-image-zoom": "^2.0.1",
     "@types/styled-components": "^5.1.15",
     "autoprefixer": "^10.4.0",
+    "babel-jest": "^27.3.1",
+    "jest": "^27.3.1",
+    "jest-styled-components": "^7.0.8",
     "postcss": "^8.3.11",
     "tailwindcss": "^2.2.19",
     "typescript": "^4.5.2"
