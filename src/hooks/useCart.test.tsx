@@ -15,7 +15,7 @@ it("must render add 2 products to the cart and at the end validate the total val
     <CartProvider>{children}</CartProvider>
   );
 
-  const { result, rerender } = renderHook(() => useCart(), {
+  const { result } = renderHook(() => useCart(), {
     wrapper,
   });
 
