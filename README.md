@@ -27,3 +27,8 @@ Tests✔️
 
     yarn dev
 
+
+### Run Tests
+
+    yarn test
+
