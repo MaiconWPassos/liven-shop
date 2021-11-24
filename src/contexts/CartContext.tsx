@@ -25,24 +25,28 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
    * Função responsável por adicionar um item ao carrinho
    */
   function addProduct(newProduct: Product): void {
-    if (newProduct.stock === 0) {
-      throw new Error("Produto indisponível");
-    }
+    try {
+      if (newProduct.stock === 0) {
+        throw new Error("Produto indisponível");
+      }
 
-    const existsProductIndex = products.findIndex(
-      (product) => product.id === newProduct.id
-    );
+      const existsProductIndex = products.findIndex(
+        (product) => product.id === newProduct.id
+      );
 
-    if (existsProductIndex >= 0) {
-      const newListProducts = products;
-      const product = newListProducts[existsProductIndex];
-      product.quantity += newProduct.quantity;
+      if (existsProductIndex >= 0) {
+        const newListProducts = products;
+        const product = newListProducts[existsProductIndex];
+        product.quantity += newProduct.quantity;
 
-      newListProducts[existsProductIndex] = product;
+        newListProducts[existsProductIndex] = product;
 
-      setProducts(newListProducts);
-    } else {
-      setProducts([...products, newProduct]);
+        setProducts(newListProducts);
+      } else {
+        setProducts([...products, newProduct]);
+      }
+    } catch (err) {
+      alert(err.message);
     }
   }
   /**
@@ -85,18 +89,28 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
    * Função responsável por remover a quantdade de  item do carrinho
    */
   function removeQuantityProduct(idProduct: string) {
-    const existsProductIndex = products.findIndex(
-      (product) => product.id === idProduct
-    );
+    try {
+      const existsProductIndex = products.findIndex(
+        (product) => product.id === idProduct
+      );
 
-    if (existsProductIndex >= 0) {
-      const newListProducts = products;
-      const product = newListProducts[existsProductIndex];
-      product.quantity = product.quantity - 1;
+      if (existsProductIndex >= 0) {
+        const newListProducts = products;
+        const product = newListProducts[existsProductIndex];
 
-      newListProducts[existsProductIndex] = product;
+        if (product.quantity === 1) {
+          throw new Error(
+            "Você precisa ter pelo menos um item do produto, caso queira remover clique no botão excluir!"
+          );
+        }
+        product.quantity = product.quantity - 1;
 
-      setProducts([...newListProducts]);
+        newListProducts[existsProductIndex] = product;
+
+        setProducts([...newListProducts]);
+      }
+    } catch (error) {
+      alert(error.message);
     }
   }
 

@@ -14,6 +14,13 @@ export const Container = styled.div`
     padding: 8px 150px;
     padding-top: 48px;
   }
+
+  .total {
+    width: 100%;
+    text-align: right;
+    font-weight: bold;
+    font-size: 36px;
+  }
 `;
 
 export const SectionProducts = styled.div`
@@ -23,5 +30,9 @@ export const SectionProducts = styled.div`
 
   @media (min-width: 968px) {
     margin-top: 48px;
+  }
+
+  > div:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.03);
   }
 `;
