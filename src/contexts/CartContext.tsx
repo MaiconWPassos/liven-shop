@@ -1,4 +1,5 @@
 import { ReactNode, createContext, useState } from "react";
+import createPersistedState from "use-persisted-state";
 import { useIntl } from "react-intl";
 import { toast } from "react-toastify";
 import { Product } from "../types";
@@ -17,6 +18,7 @@ type Cart = {
 
 export const CartContext = createContext<Cart>({} as Cart);
 
+const useProductState = createPersistedState("products");
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const { formatMessage } = useIntl();
   const f = (id: string) => formatMessage({ id });
@@ -24,7 +26,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   /**
    * Estado para armazenar os items no carrinho
    */
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useProductState<Product[]>([]);
 
   /**
    * Função responsável por adicionar um item ao carrinho
