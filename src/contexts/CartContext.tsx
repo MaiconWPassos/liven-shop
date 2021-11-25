@@ -1,4 +1,6 @@
 import { ReactNode, createContext, useState } from "react";
+import { useIntl } from "react-intl";
+import { toast } from "react-toastify";
 import { Product } from "../types";
 
 type CartProviderProps = {
@@ -16,6 +18,9 @@ type Cart = {
 export const CartContext = createContext<Cart>({} as Cart);
 
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
+  const { formatMessage } = useIntl();
+  const f = (id: string) => formatMessage({ id });
+
   /**
    * Estado para armazenar os items no carrinho
    */
@@ -46,25 +51,16 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
         setProducts([...products, newProduct]);
       }
     } catch (err) {
-      alert(err.message);
+      toast.error(err.message);
     }
   }
   /**
    * Função responsável por remover um item do carrinho
    */
   function removeProduct(idProduct: string): void {
-    const productIndex = products.findIndex((p) => p.id === idProduct);
+    const productsFiltered = products.filter((p) => p.id !== idProduct);
 
-    if (productIndex >= 0) {
-      const newListProducts = products;
-      newListProducts.splice(productIndex, 1);
-
-      if (newListProducts.length === 0) {
-        setProducts([]);
-      } else {
-        setProducts(newListProducts);
-      }
-    }
+    setProducts(productsFiltered);
   }
   /**
    * Função responsável por adiconar a quantdade de  item do carrinho
@@ -99,9 +95,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
         const product = newListProducts[existsProductIndex];
 
         if (product.quantity === 1) {
-          throw new Error(
-            "Você precisa ter pelo menos um item do produto, caso queira remover clique no botão excluir!"
-          );
+          throw new Error(f("minimumItemMessage"));
         }
         product.quantity = product.quantity - 1;
 
@@ -110,7 +104,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
         setProducts([...newListProducts]);
       }
     } catch (error) {
-      alert(error.message);
+      toast.error(error.message);
     }
   }
 

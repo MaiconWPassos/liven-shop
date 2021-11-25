@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
-
+import { useIntl } from "react-intl";
 import { MdAdd, MdRemove } from "react-icons/md";
 import useCart from "../../hooks/useCart";
 
@@ -10,6 +10,9 @@ import { Product as ProductType } from "../../types";
 import styled from "styled-components";
 
 const Product: React.FC = () => {
+  const { formatMessage } = useIntl();
+  const f = (id: string) => formatMessage({ id });
+
   const router = useRouter();
   const { addProduct } = useCart();
   const [loader, setLoader] = useState<boolean>(true);
@@ -80,7 +83,7 @@ const Product: React.FC = () => {
         </div>
 
         <div className="quantity">
-          <h1>Quantidade</h1>
+          <h1>{f("quantityLabel")}</h1>
           <button
             className="btn-quantity"
             type="button"
@@ -99,7 +102,7 @@ const Product: React.FC = () => {
           </button>
         </div>
         <button className="btn-add" type="button" onClick={addProductInCart}>
-          Adicionar ao carrinho
+          {f("buttonLabel")}
         </button>
       </div>
     </Container>

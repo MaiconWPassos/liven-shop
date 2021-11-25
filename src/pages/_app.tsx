@@ -2,7 +2,11 @@ import "tailwindcss/tailwind.css";
 import Head from "next/head";
 import { ThemeProvider } from "styled-components";
 import { ServerStyleSheet } from "styled-components";
+import { useRouter } from "next/router";
+import { IntlProvider } from "react-intl";
+import { ToastContainer } from "react-toastify";
 
+import * as locales from "../content/locale";
 /**
  * Tema de cores da aplicação
  */
@@ -16,24 +20,41 @@ import Header from "../components/Header";
 import { CartProvider } from "../contexts/CartContext";
 
 function MyApp({ Component, pageProps }) {
+  /**
+   * Identificação de paths para determinar o idioma a ser exibido
+   */
+  const { locale, defaultLocale, pathname } = useRouter();
+  const localeCopy = locales[locale];
+  const messages = localeCopy[pathname];
+
   return (
-    <ThemeProvider theme={theme}>
-      <Head>
-        <title>LivenShop</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
-      <CartProvider>
-        <Header />
-        <Component {...pageProps} />
-      </CartProvider>
-      <GlobalStyle />
-    </ThemeProvider>
+    <IntlProvider
+      locale={locale}
+      defaultLocale={defaultLocale}
+      messages={messages}
+    >
+      <ThemeProvider theme={theme}>
+        <Head>
+          <title>LivenShop</title>
+          <meta
+            name="viewport"
+            content="initial-scale=1.0, width=device-width"
+          />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap"
+            rel="stylesheet"
+          />
+        </Head>
+        <CartProvider>
+          <Header />
+          <Component {...pageProps} />
+        </CartProvider>
+        <GlobalStyle />
+        <ToastContainer />
+      </ThemeProvider>
+    </IntlProvider>
   );
 }
 
