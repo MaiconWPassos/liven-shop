@@ -27,7 +27,7 @@ const Cart: React.FC = () => {
 
       <SectionProducts>
         {products.map((product) => (
-          <ProductItemList {...product} />
+          <ProductItemList {...product} key={product.id} />
         ))}
 
         {products.length === 0 && <p> {f("labelEmpty")}</p>}
