@@ -1,29 +1,34 @@
-# Next.js + Tailwind CSS Example
+![enter image description here](https://liven-shop-ten.vercel.app/_next/image?url=/logo.png&w=256&q=75)
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v2.2)](https://blog.tailwindcss.com/tailwindcss-2-2) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+Development of a simple store in React and ** Typescript **, using ** Next.js **.
 
-It uses the new [`Just-in-Time Mode`](https://tailwindcss.com/docs/just-in-time-mode) for Tailwind CSS.
+[Demo](https://liven-shop-ten.vercel.app/)
 
-## Preview
+### [Prototype on Figma](https://www.figma.com/file/JY48ELbdIn5FpUX9nFDEY0/Untitled?node-id=0:1)
 
-Preview the example live on [StackBlitz](http://stackblitz.com/):
+### Technologies and resources
+React ✔️
+Typescript✔️
+Next.js✔️
+Context✔️
+Hooks✔️
+Tests✔️
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+###  Clone Aplication
 
-## Deploy your own
+    git clone https://github.com/MaiconWPassos/liven-shop.git pathname
+	
+	cd pathname
+### Install dependencies
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+    yarn install
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+### Run
 
-## How to use
+    yarn dev
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-# or
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
+### Run Tests
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+    yarn test
+

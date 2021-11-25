@@ -57,7 +57,12 @@ const ProductItemList: React.FC<ProductItemListPros> = ({
         >
           <MdRemove />
         </button>
-        <input type="number" className="input-quantity" value={quantity} />
+        <input
+          type="number"
+          className="input-quantity"
+          defaultValue={quantity}
+          readOnly
+        />
         <button
           className="btn-quantity"
           type="button"

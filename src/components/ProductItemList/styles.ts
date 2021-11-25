@@ -8,12 +8,14 @@ export const Card = styled.div`
   animation: all 0.5s ease-in;
 
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
 
   .remove-product {
     color: ${({ theme }) => theme.colors.danger};
     font-weight: bold;
-    margin-top: 50px;
+    margin-top: 10px;
   }
 
   .subtotal {
@@ -21,14 +23,26 @@ export const Card = styled.div`
     align-items: flex-start;
     justify-content: center;
     flex-direction: column;
+
+    h1 {
+      font-weight: 300;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+    strong {
+      margin-top: 0px;
+      font-size: 14px;
+    }
   }
+
   img {
-    max-width: 70px;
+    max-width: 200px;
     margin-right: 20px;
   }
   a > h1 {
     font-size: 14px;
     font-weight: 300;
+    margin-top: 10px;
 
     margin-bottom: 8px;
   }
@@ -39,6 +53,8 @@ export const Card = styled.div`
   }
 
   @media (min-width: 968px) {
+    height: 180px;
+
     flex-direction: row;
 
     img {
@@ -46,7 +62,8 @@ export const Card = styled.div`
     }
 
     a > h1 {
-      font-size: 24px;
+      font-size: 18px;
+      margin-top: 0px;
     }
 
     strong {
@@ -74,6 +91,10 @@ export const Card = styled.div`
         margin-top: 0px;
         font-size: 24px;
       }
+    }
+
+    .remove-product {
+      margin-top: 50px;
     }
   }
 `;
@@ -109,5 +130,16 @@ export const SectionQuantity = styled.div`
     align-items: center;
     justify-content: center;
     border-radius: 10px;
+  }
+
+  @media (max-width: 968px) {
+    justify-content: flex-start;
+    margin-left: 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    h1 {
+      text-align: left;
+    }
   }
 `;

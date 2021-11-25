@@ -1,11 +1,13 @@
 import axios from "axios";
 import ProductCard from "../components/ProductCard";
+import { Product } from "../types";
 
 export default function Home({ products }) {
   return (
     <div className="w-full  md:px-20  flex justify-center items-center flex-wrap">
-      {products.map((product) => (
+      {products.map((product: Product) => (
         <ProductCard
+          key={product.id}
           name={product.name}
           id={product.id}
           price={product.price}
