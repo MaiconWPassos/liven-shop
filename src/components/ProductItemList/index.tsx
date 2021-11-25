@@ -1,8 +1,15 @@
 import React from "react";
 import Link from "next/link";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+import { MdAdd, MdRemove } from "react-icons/md";
+
 import { Card, SectionQuantity } from "./styles";
 import useCart from "../../hooks/useCart";
-import { MdAdd, MdRemove } from "react-icons/md";
+import { useTheme } from "styled-components";
+import { useIntl } from "react-intl";
+
+const MySwal = withReactContent(Swal);
 
 type ProductItemListPros = {
   id: string;
@@ -20,6 +27,32 @@ const ProductItemList: React.FC<ProductItemListPros> = ({
 }) => {
   const { removeProduct, addQuantityProduct, removeQuantityProduct } =
     useCart();
+
+  const { formatMessage } = useIntl();
+  const f = (id: string) => formatMessage({ id });
+
+  const { colors } = useTheme();
+
+  const handleRemoveProduct = (id: string) => {
+    Swal.fire({
+      title: "",
+      text: f("confirmMessageRemove"),
+      showDenyButton: true,
+      // showCancelButton: true,
+      confirmButtonText: f("confirmButtonText"),
+      confirmButtonColor: colors.primary,
+      denyButtonColor: colors.danger,
+
+      denyButtonText: f("denyButtonText"),
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        removeProduct(id);
+
+        Swal.fire(f("successRemoveMessage"), "", "success");
+      }
+    });
+  };
 
   return (
     <Card>
@@ -42,14 +75,14 @@ const ProductItemList: React.FC<ProductItemListPros> = ({
         <br />
         <button
           className="remove-product"
-          onClick={() => removeProduct(id)}
+          onClick={() => handleRemoveProduct(id)}
           type="button"
         >
-          Excluir
+          {f("removeLabel")}
         </button>
       </div>
       <SectionQuantity>
-        <h1>Quantidade</h1>
+        <h1>{f("quantityLabel")}</h1>
         <button
           className="btn-quantity"
           type="button"
@@ -60,7 +93,7 @@ const ProductItemList: React.FC<ProductItemListPros> = ({
         <input
           type="number"
           className="input-quantity"
-          defaultValue={quantity}
+          value={quantity}
           readOnly
         />
         <button

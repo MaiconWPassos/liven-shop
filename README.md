@@ -13,6 +13,8 @@ Next.js✔️
 Context✔️
 Hooks✔️
 Tests✔️
+Internationalization✔️
+
 
 ###  Clone Aplication
 

@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import ProductItemList from "../../components/ProductItemList";
 import useCart from "../../hooks/useCart";
 import styled from "styled-components";
+import { useIntl } from "react-intl";
 const Cart: React.FC = () => {
+  const { formatMessage } = useIntl();
+  const f = (id: string) => formatMessage({ id });
+
   const { products } = useCart();
   const [total, setTotal] = useState(0);
 
@@ -19,14 +23,14 @@ const Cart: React.FC = () => {
   }, [products]);
   return (
     <Container>
-      <h1>Seu carrinho de compras</h1>
+      <h1>{f("hello")}</h1>
 
       <SectionProducts>
         {products.map((product) => (
           <ProductItemList {...product} />
         ))}
 
-        {products.length === 0 && <p> Nenhum produto no carrinho.</p>}
+        {products.length === 0 && <p> {f("labelEmpty")}</p>}
       </SectionProducts>
 
       {products.length > 0 && (
