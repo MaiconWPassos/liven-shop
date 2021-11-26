@@ -13,6 +13,7 @@
     "@types/use-persisted-state": "^0.3.0",
     "axios": "^0.24.0",
     "next": "latest",
+    "next-server": "^9.0.5",
     "nprogress": "^0.2.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",

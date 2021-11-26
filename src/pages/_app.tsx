@@ -2,25 +2,12 @@ import "tailwindcss/tailwind.css";
 import Head from "next/head";
 import { ThemeProvider } from "styled-components";
 import { ServerStyleSheet } from "styled-components";
-import { useRouter } from "next/router";
-import { IntlProvider } from "react-intl";
+
 import { ToastContainer } from "react-toastify";
 
 import NProgress from "nprogress";
 import Router from "next/router";
 
-NProgress.configure({
-  minimum: 0.3,
-  easing: "ease",
-  speed: 800,
-  showSpinner: false,
-});
-
-Router.events.on("routeChangeStart", () => NProgress.start());
-Router.events.on("routeChangeComplete", () => NProgress.done());
-Router.events.on("routeChangeError", () => NProgress.done());
-
-import * as locales from "../content/locale";
 /**
  * Tema de cores da aplicação
  */
@@ -32,21 +19,47 @@ import theme from "../styles/theme";
 import GlobalStyle from "../styles/global";
 import Header from "../components/Header";
 import { CartProvider } from "../contexts/CartContext";
+import { useEffect, useState } from "react";
+import IntlProvider from "../contexts/IntlContext";
+
+NProgress.configure({
+  minimum: 0.3,
+  easing: "ease",
+  speed: 800,
+  showSpinner: false,
+});
 
 function MyApp({ Component, pageProps }) {
   /**
-   * Identificação de paths para determinar o idioma a ser exibido
+   * Estado para controlar o loader de Carregamento da pagina
    */
-  const { locale, defaultLocale, pathname } = useRouter();
-  const localeCopy = locales[locale];
-  const messages = localeCopy[pathname];
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const jssStyles = document.querySelector("#jss-server-side");
+    if (jssStyles) jssStyles.parentElement.removeChild(jssStyles);
+
+    const start = () => {
+      NProgress.start();
+      setLoading(true);
+    };
+    const end = () => {
+      NProgress.done();
+      setLoading(false);
+    };
+
+    Router.events.on("routeChangeStart", start);
+    Router.events.on("routeChangeComplete", end);
+    Router.events.on("routeChangeError", end);
+    return () => {
+      Router.events.off("routeChangeStart", start);
+      Router.events.off("routeChangeComplete", end);
+      Router.events.off("routeChangeError", end);
+    };
+  }, []);
 
   return (
-    <IntlProvider
-      locale={locale}
-      defaultLocale={defaultLocale}
-      messages={messages}
-    >
+    <IntlProvider>
       <ThemeProvider theme={theme}>
         <Head>
           <title>LivenShop</title>
@@ -63,7 +76,16 @@ function MyApp({ Component, pageProps }) {
         </Head>
         <CartProvider>
           <Header />
-          <Component {...pageProps} />
+
+          {loading ? (
+            <div className="w-full flex justify-center items-center">
+              <div className="animate-spin rounded-full h-20 w-20 border-b-2 border-gray-100"></div>
+            </div>
+          ) : (
+            <>
+              <Component {...pageProps} />
+            </>
+          )}
         </CartProvider>
         <GlobalStyle />
         <ToastContainer />

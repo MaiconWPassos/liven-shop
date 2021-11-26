@@ -1,7 +1,5 @@
 import { ReactNode, createContext, useState } from "react";
-import createPersistedState from "use-persisted-state";
-import { useIntl } from "react-intl";
-import { toast } from "react-toastify";
+
 import { Product } from "../types";
 
 type CartProviderProps = {
@@ -18,42 +16,34 @@ type Cart = {
 
 export const CartContext = createContext<Cart>({} as Cart);
 
-const useProductState = createPersistedState("products");
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
-  const { formatMessage } = useIntl();
-  const f = (id: string) => formatMessage({ id });
-
   /**
    * Estado para armazenar os items no carrinho
    */
-  const [products, setProducts] = useProductState<Product[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
 
   /**
    * Função responsável por adicionar um item ao carrinho
    */
   function addProduct(newProduct: Product): void {
-    try {
-      if (newProduct.stock === 0) {
-        throw new Error("Produto indisponível");
-      }
+    if (newProduct.stock === 0) {
+      throw new Error("stockEmptyMessage");
+    }
 
-      const existsProductIndex = products.findIndex(
-        (product) => product.id === newProduct.id
-      );
+    const existsProductIndex = products.findIndex(
+      (product) => product.id === newProduct.id
+    );
 
-      if (existsProductIndex >= 0) {
-        const newListProducts = products;
-        const product = newListProducts[existsProductIndex];
-        product.quantity += newProduct.quantity;
+    if (existsProductIndex >= 0) {
+      const newListProducts = products;
+      const product = newListProducts[existsProductIndex];
+      product.quantity += newProduct.quantity;
 
-        newListProducts[existsProductIndex] = product;
+      newListProducts[existsProductIndex] = product;
 
-        setProducts(newListProducts);
-      } else {
-        setProducts([...products, newProduct]);
-      }
-    } catch (err) {
-      toast.error(err.message);
+      setProducts(newListProducts);
+    } else {
+      setProducts([...products, newProduct]);
     }
   }
   /**
@@ -87,26 +77,22 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
    * Função responsável por remover a quantdade de  item do carrinho
    */
   function removeQuantityProduct(idProduct: string) {
-    try {
-      const existsProductIndex = products.findIndex(
-        (product) => product.id === idProduct
-      );
+    const existsProductIndex = products.findIndex(
+      (product) => product.id === idProduct
+    );
 
-      if (existsProductIndex >= 0) {
-        const newListProducts = products;
-        const product = newListProducts[existsProductIndex];
+    if (existsProductIndex >= 0) {
+      const newListProducts = products;
+      const product = newListProducts[existsProductIndex];
 
-        if (product.quantity === 1) {
-          throw new Error(f("minimumItemMessage"));
-        }
-        product.quantity = product.quantity - 1;
-
-        newListProducts[existsProductIndex] = product;
-
-        setProducts([...newListProducts]);
+      if (product.quantity === 1) {
+        throw new Error("minimumItemMessage");
       }
-    } catch (error) {
-      toast.error(error.message);
+      product.quantity = product.quantity - 1;
+
+      newListProducts[existsProductIndex] = product;
+
+      setProducts([...newListProducts]);
     }
   }
 

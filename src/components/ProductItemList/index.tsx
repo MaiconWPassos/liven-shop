@@ -8,6 +8,7 @@ import { Card, SectionQuantity } from "./styles";
 import useCart from "../../hooks/useCart";
 import { useTheme } from "styled-components";
 import { useIntl } from "react-intl";
+import { toast } from "react-toastify";
 
 const MySwal = withReactContent(Swal);
 
@@ -54,6 +55,14 @@ const ProductItemList: React.FC<ProductItemListPros> = ({
     });
   };
 
+  const handleRemoveQuantity = (id: string) => {
+    try {
+      removeQuantityProduct(id);
+    } catch (error) {
+      toast.error(f(error.message));
+    }
+  };
+
   return (
     <Card>
       <img src={image} alt="Product" />
@@ -86,7 +95,7 @@ const ProductItemList: React.FC<ProductItemListPros> = ({
         <button
           className="btn-quantity"
           type="button"
-          onClick={() => removeQuantityProduct(id)}
+          onClick={() => handleRemoveQuantity(id)}
         >
           <MdRemove />
         </button>
