@@ -10,7 +10,7 @@ Development of a simple store in React and ** Typescript **, using ** Next.js **
 - React ✔️
 - Typescript✔️
 - Next.js✔️
-- Context✔️
+- Context API✔️
 - Hooks✔️
 - Tests✔️
 - Internationalization✔️
