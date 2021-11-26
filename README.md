@@ -7,13 +7,13 @@ Development of a simple store in React and ** Typescript **, using ** Next.js **
 ### [Prototype on Figma](https://www.figma.com/file/JY48ELbdIn5FpUX9nFDEY0/Untitled?node-id=0:1)
 
 ### Technologies and resources
-React ✔️
-Typescript✔️
-Next.js✔️
-Context✔️
-Hooks✔️
-Tests✔️
-Internationalization✔️
+- React ✔️
+- Typescript✔️
+- Next.js✔️
+- Context✔️
+- Hooks✔️
+- Tests✔️
+- Internationalization✔️
 
 
 ###  Clone Aplication
