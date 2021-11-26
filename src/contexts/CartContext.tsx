@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useState } from "react";
-
+import createPersistedState from "use-persisted-state";
 import { Product } from "../types";
 
 type CartProviderProps = {
@@ -16,11 +16,13 @@ type Cart = {
 
 export const CartContext = createContext<Cart>({} as Cart);
 
+const useProductsState = createPersistedState("products");
+
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   /**
    * Estado para armazenar os items no carrinho
    */
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useProductsState<Product[]>([]);
 
   /**
    * Função responsável por adicionar um item ao carrinho

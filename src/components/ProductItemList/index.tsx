@@ -50,7 +50,11 @@ const ProductItemList: React.FC<ProductItemListPros> = ({
       if (result.isConfirmed) {
         removeProduct(id);
 
-        Swal.fire(f("successRemoveMessage"), "", "success");
+        Swal.fire({
+          title: f("successRemoveMessage"),
+          icon: "success",
+          confirmButtonColor: colors.primary,
+        });
       }
     });
   };
