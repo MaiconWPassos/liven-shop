@@ -18,7 +18,8 @@ export default function Home({ products }) {
   );
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
+  
   const { data, status } = await axios.get(
     "https://5d6da1df777f670014036125.mockapi.io/api/v1/product"
   );

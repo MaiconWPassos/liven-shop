@@ -1046,6 +1046,11 @@
   dependencies:
     "@types/react" "*"
 
+"@types/use-prefers-color-scheme@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@types/use-prefers-color-scheme/-/use-prefers-color-scheme-0.1.0.tgz#f5fb8503efbca570f27527f4e4349247a864a6c4"
+  integrity sha512-pYzXvblFJGuJGYe5vatbueANugp+UD+xiaOzXLVdT+cWrKa7h8UPBciEgrlgOm+Hw+GEuqzEYAlZgl3Cb5L1Qw==
+
 "@types/yargs-parser@*":
   version "20.2.1"
   resolved "https://registry.yarnpkg.com/@types/yargs-parser/-/yargs-parser-20.2.1.tgz#3b9ce2489919d9e4fea439b76916abc34b2df129"
@@ -5145,6 +5150,11 @@ use-persisted-state@^0.3.3:
   integrity sha512-pCNlvYC8+XjRxwnIut4teGC9f2p9aD88R8OGseQGZa2dvqG/h1vEGk1vRE1IZG0Vf161UDpn+NlW4+UGubQflQ==
   dependencies:
     "@use-it/event-listener" "^0.1.2"
+
+use-prefers-color-scheme@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/use-prefers-color-scheme/-/use-prefers-color-scheme-0.1.1.tgz#6b7286ed5b45fe68f922ae1179c48984d93249c8"
+  integrity sha512-KFuYYXaVBiVjwR+DccbN2w+1g+HpTBSEet3d+03S7Ionv1ogED8qeXEK7dkq/oNVu3rKbJYrgEzCZpGU/9meGA==
 
 use-subscription@1.5.1:
   version "1.5.1"

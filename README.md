@@ -14,6 +14,8 @@ Development of a simple store in React and ** Typescript **, using ** Next.js **
 - Hooks✔️
 - Tests (Jest)✔️
 - Internationalization✔️
+- Theme Dark/Light✔️
+
 
 
 ###  Clone Aplication

@@ -11,7 +11,7 @@ it("should render Header", () => {
   const { getByTestId } = render(
     <ThemeProvider theme={theme}>
       <CartProvider>
-        <Header />
+        <Header setIsDarkTheme={(theme) => theme} isDarkTheme={false} />
       </CartProvider>
     </ThemeProvider>
   );

@@ -2,7 +2,7 @@ import "tailwindcss/tailwind.css";
 import Head from "next/head";
 import { ThemeProvider } from "styled-components";
 import { ServerStyleSheet } from "styled-components";
-
+import createPersistedState from "use-persisted-state";
 import { ToastContainer } from "react-toastify";
 
 import NProgress from "nprogress";
@@ -11,7 +11,9 @@ import Router from "next/router";
 /**
  * Tema de cores da aplicação
  */
+
 import theme from "../styles/theme";
+import light from "../styles/theme/light";
 
 /**
  * Estilos Globais
@@ -29,12 +31,17 @@ NProgress.configure({
   showSpinner: false,
 });
 
+const useThemeState = createPersistedState("theme");
+
 function MyApp({ Component, pageProps }) {
   /**
    * Estado para controlar o loader de Carregamento da pagina
    */
   const [loading, setLoading] = useState(false);
 
+  /**
+   * Controlador de loader
+   */
   useEffect(() => {
     const jssStyles = document.querySelector("#jss-server-side");
     if (jssStyles) jssStyles.parentElement.removeChild(jssStyles);
@@ -58,9 +65,11 @@ function MyApp({ Component, pageProps }) {
     };
   }, []);
 
+  const [isDarkTheme, setIsDarkTheme] = useThemeState(false);
+
   return (
     <IntlProvider>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={isDarkTheme ? theme : light}>
         <Head>
           <title>LivenShop</title>
           <meta
@@ -75,7 +84,7 @@ function MyApp({ Component, pageProps }) {
           />
         </Head>
         <CartProvider>
-          <Header />
+          <Header setIsDarkTheme={setIsDarkTheme} isDarkTheme={isDarkTheme} />
 
           {loading ? (
             <div className="w-full flex justify-center items-center">
@@ -100,7 +109,7 @@ export function getInitialProps({ renderPage }) {
   const sheet = new ServerStyleSheet();
 
   const page = renderPage(
-    (App) => (props) => sheet.collectStyles(<App {...props} />)
+    (App: any) => (props: any) => sheet.collectStyles(<App {...props} />)
   );
 
   const styleTags = sheet.getStyleElement();

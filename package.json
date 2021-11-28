@@ -4,13 +4,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "jest --runInBand --detectOpenHandles ",
+    "test": "jest",
     "coverage": "jest --coverage"
   },
   "dependencies": {
     "@types/nprogress": "^0.2.0",
     "@types/react-icons": "^3.0.0",
     "@types/use-persisted-state": "^0.3.0",
+    "@types/use-prefers-color-scheme": "^0.1.0",
     "axios": "^0.24.0",
     "next": "latest",
     "next-server": "^9.0.5",
@@ -25,7 +26,8 @@
     "styled-components": "^5.3.3",
     "sweetalert2": "^11.2.0",
     "sweetalert2-react-content": "^4.2.0",
-    "use-persisted-state": "^0.3.3"
+    "use-persisted-state": "^0.3.3",
+    "use-prefers-color-scheme": "^0.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",

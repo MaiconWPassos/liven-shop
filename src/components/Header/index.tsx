@@ -1,11 +1,24 @@
 import React from "react";
 import { MdShoppingCart } from "react-icons/md";
+import { CgDarkMode } from "react-icons/cg";
+
 import Link from "next/link";
 import useCart from "../../hooks/useCart";
 
-import { Container, Logo, CartButton, AmoutProducts } from "./styles";
+import {
+  Container,
+  Logo,
+  CartButton,
+  AmoutProducts,
+  ButtonTheme,
+} from "./styles";
 
-const Header: React.FC = () => {
+type HeaderProps = {
+  setIsDarkTheme(value: boolean): void;
+  isDarkTheme: boolean;
+};
+
+const Header: React.FC<HeaderProps> = ({ setIsDarkTheme, isDarkTheme }) => {
   const { products } = useCart();
   return (
     <Container>
@@ -15,6 +28,9 @@ const Header: React.FC = () => {
         </a>
       </Link>
       <div>
+        <ButtonTheme onClick={() => setIsDarkTheme(!isDarkTheme)}>
+          <CgDarkMode />
+        </ButtonTheme>
         <Link href={`/cart`}>
           <CartButton data-testid="button-cart">
             <MdShoppingCart />
