@@ -1,6 +1,6 @@
 ![enter image description here](https://liven-shop-ten.vercel.app/_next/image?url=/logo.png&w=256&q=75)
 
-Development of a simple store in React and ** Typescript **, using ** Next.js **.
+Development of a simple store in React and **Typescript**, using **Next.js**.
 
 [Demo](https://liven-shop-ten.vercel.app/)
 
