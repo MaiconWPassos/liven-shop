@@ -23,6 +23,7 @@ import Header from "../components/Header";
 import { CartProvider } from "../contexts/CartContext";
 import { useEffect, useState } from "react";
 import IntlProvider from "../contexts/IntlContext";
+import { AuthProvider } from "../contexts/AuthContext";
 
 NProgress.configure({
   minimum: 0.3,
@@ -83,19 +84,21 @@ function MyApp({ Component, pageProps }) {
             rel="stylesheet"
           />
         </Head>
-        <CartProvider>
-          <Header setIsDarkTheme={setIsDarkTheme} isDarkTheme={isDarkTheme} />
+        <AuthProvider>
+          <CartProvider>
+            <Header setIsDarkTheme={setIsDarkTheme} isDarkTheme={isDarkTheme} />
 
-          {loading ? (
-            <div className="w-full flex justify-center items-center">
-              <div className="animate-spin rounded-full h-20 w-20 border-b-2 border-gray-100"></div>
-            </div>
-          ) : (
-            <>
-              <Component {...pageProps} />
-            </>
-          )}
-        </CartProvider>
+            {loading ? (
+              <div className="w-full flex justify-center items-center">
+                <div className="animate-spin rounded-full h-20 w-20 border-b-2 border-gray-100"></div>
+              </div>
+            ) : (
+              <>
+                <Component {...pageProps} />
+              </>
+            )}
+          </CartProvider>
+        </AuthProvider>
         <GlobalStyle />
         <ToastContainer />
       </ThemeProvider>

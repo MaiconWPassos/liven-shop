@@ -8,11 +8,12 @@ type ProductCardPros = {
   price: string;
   image: string;
 };
+
 const ProductCard: React.FC<ProductCardPros> = ({ id, image, name, price }) => {
   return (
     <Link href={`/product/${id}`}>
       <Card>
-        <img src={image} alt="Product" />
+        <img src={image} alt={name} />
         <h1>{name}</h1>
 
         <strong>

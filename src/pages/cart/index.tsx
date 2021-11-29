@@ -3,6 +3,8 @@ import ProductItemList from "../../components/ProductItemList";
 import useCart from "../../hooks/useCart";
 import styled from "styled-components";
 import { useIntl } from "react-intl";
+import Link from "next/link";
+
 const Cart: React.FC = () => {
   const { formatMessage } = useIntl();
   const f = (id: string) => formatMessage({ id });
@@ -43,6 +45,10 @@ const Cart: React.FC = () => {
           })}
         </h1>
       )}
+
+      <Link href="/checkout">
+        <a className="btn-finish">{f("labelButtonCheckout")}</a>
+      </Link>
     </Container>
   );
 };
@@ -69,6 +75,21 @@ export const Container = styled.div`
     text-align: right;
     font-weight: bold;
     font-size: 36px;
+  }
+
+  .btn-finish {
+    border: 1px solid;
+    border-radius: 20px;
+    border-color: ${({ theme }) => theme.colors.color};
+    color: ${({ theme }) => theme.colors.color};
+
+    width: 200px;
+    text-align: center;
+    padding: 8px 10px;
+    animation: all 0.25s linear;
+    &:hover {
+      opacity: 0.9;
+    }
   }
 `;
 

@@ -12,9 +12,18 @@ export const en = {
     minimumItemMessage:
       "You need to have at least one product item, if you want to remove click the delete button!",
     stockEmptyMessage: "Product Unavailable",
+    labelButtonCheckout: "Checkout",
   },
   "/product/[id]": {
     quantityLabel: "Quantity",
     buttonLabel: "Add to Cart",
+  },
+
+  "/checkout": {
+    hello: "Checkout",
+    successStore: "Order successfully completed!",
+    loginGoogle: "Login to continue",
+    labelButtonGoogle: "Log in with Google",
+    labelButtonCheckout: "Finalize order",
   },
 };

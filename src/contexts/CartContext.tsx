@@ -12,6 +12,7 @@ type Cart = {
   removeProduct(idProduct: string): void;
   addQuantityProduct(idProduct: string): void;
   removeQuantityProduct(idProduct: string): void;
+  clearProducts(): void;
 };
 
 export const CartContext = createContext<Cart>({} as Cart);
@@ -98,6 +99,10 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     }
   }
 
+  function clearProducts() {
+    setProducts([]);
+  }
+
   return (
     <CartContext.Provider
       value={{
@@ -106,6 +111,7 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
         removeProduct,
         addQuantityProduct,
         removeQuantityProduct,
+        clearProducts,
       }}
     >
       {children}

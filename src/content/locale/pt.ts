@@ -12,9 +12,18 @@ export const pt = {
     minimumItemMessage:
       "Você precisa ter pelo menos um item do produto, caso queira remover clique no botão excluir!",
     stockEmptyMessage: "Produto indisponível",
+    labelButtonCheckout: "Finalizar Compra",
   },
   "/product/[id]": {
     quantityLabel: "Quantidade",
     buttonLabel: "Adicionar ao carrinho",
+  },
+
+  "/checkout": {
+    hello: "Finalizar compra",
+    successStore: "Pedido Finalizado com sucesso!",
+    loginGoogle: "Faça login para prosseguir",
+    labelButtonGoogle: "Entrar com google",
+    labelButtonCheckout: "Finalizar pedido",
   },
 };

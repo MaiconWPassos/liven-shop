@@ -24,7 +24,7 @@ const Header: React.FC<HeaderProps> = ({ setIsDarkTheme, isDarkTheme }) => {
     <Container>
       <Link href={`/`}>
         <a>
-          <Logo src="/logo.png" />
+          <Logo src="/logo.png" alt="Logo Liven Shop" />
         </a>
       </Link>
       <div>
