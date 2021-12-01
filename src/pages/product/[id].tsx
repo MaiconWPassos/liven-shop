@@ -8,6 +8,7 @@ import useCart from "../../hooks/useCart";
 import { Product as ProductType } from "../../types";
 
 import styled from "styled-components";
+import { Img } from "react-image";
 
 const Product: React.FC = () => {
   const { formatMessage } = useIntl();
@@ -69,7 +70,13 @@ const Product: React.FC = () => {
   }
   return (
     <Container>
-      <img src="http://lorempixel.com/640/480/sports/" alt="ok" />
+      <Img
+        src={product.image}
+        alt={product.name}
+        crossorigin="anonymous"
+        loader={<img src="/product-default.png" />}
+        unloader={<img src="/product-default.png" />}
+      />
       <div className="info">
         <div>
           <h1>{product.name}</h1>

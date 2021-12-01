@@ -11,6 +11,19 @@ export const Container = styled.header`
 
   @media (min-width: 968px) {
     padding: 8px 150px;
+
+    div {
+      display: flex;
+      align-items: center;
+
+      a {
+        margin: 0px 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+      }
+    }
   }
 `;
 
@@ -26,7 +39,6 @@ export const CartButton = styled.button`
   color: ${({ theme }) => theme.colors.headerColor};
   font-size: 24px;
   position: relative;
-  margin-left: 20px;
 `;
 
 export const AmoutProducts = styled.span`

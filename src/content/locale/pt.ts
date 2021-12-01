@@ -26,4 +26,10 @@ export const pt = {
     labelButtonGoogle: "Entrar com google",
     labelButtonCheckout: "Finalizar pedido",
   },
+  "/orders": {
+    hello: "Pedidos",
+    loginGoogle: "Faça login para prosseguir",
+    labelButtonGoogle: "Entrar com google",
+    labelButtonCheckout: "Finalizar pedido",
+  },
 };

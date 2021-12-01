@@ -9,6 +9,7 @@ import useCart from "../../hooks/useCart";
 import { useTheme } from "styled-components";
 import { useIntl } from "react-intl";
 import { toast } from "react-toastify";
+import { Img } from "react-image";
 
 const MySwal = withReactContent(Swal);
 
@@ -35,7 +36,7 @@ const ProductItemList: React.FC<ProductItemListPros> = ({
   const { colors } = useTheme();
 
   const handleRemoveProduct = (id: string) => {
-    Swal.fire({
+    MySwal.fire({
       title: "",
       text: f("confirmMessageRemove"),
       showDenyButton: true,
@@ -50,7 +51,7 @@ const ProductItemList: React.FC<ProductItemListPros> = ({
       if (result.isConfirmed) {
         removeProduct(id);
 
-        Swal.fire({
+        MySwal.fire({
           title: f("successRemoveMessage"),
           icon: "success",
           confirmButtonColor: colors.primary,
@@ -69,7 +70,13 @@ const ProductItemList: React.FC<ProductItemListPros> = ({
 
   return (
     <Card>
-      <img src={image} alt="Product" />
+      <Img
+        src={image}
+        alt={name}
+        crossorigin="anonymous"
+        loader={<img src="/product-default.png" />}
+        unloader={<img src="/product-default.png" />}
+      />
 
       <div className="info">
         <Link href={`/product/${id}`}>
