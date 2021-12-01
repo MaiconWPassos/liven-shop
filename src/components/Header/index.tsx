@@ -1,6 +1,7 @@
 import React from "react";
 import { MdShoppingCart } from "react-icons/md";
 import { CgDarkMode } from "react-icons/cg";
+import { FaListAlt } from "react-icons/fa";
 
 import Link from "next/link";
 import useCart from "../../hooks/useCart";
@@ -31,6 +32,12 @@ const Header: React.FC<HeaderProps> = ({ setIsDarkTheme, isDarkTheme }) => {
         <ButtonTheme onClick={() => setIsDarkTheme(!isDarkTheme)}>
           <CgDarkMode />
         </ButtonTheme>
+
+        <Link href={`/orders`}>
+          <a>
+            <FaListAlt />
+          </a>
+        </Link>
         <Link href={`/cart`}>
           <CartButton data-testid="button-cart">
             <MdShoppingCart />

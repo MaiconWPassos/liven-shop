@@ -10,6 +10,7 @@ import Swal from "sweetalert2";
 import useCart from "../../hooks/useCart";
 import { useAuth } from "../../hooks/useAuth";
 import { database } from "../../services/firebase";
+import { Img } from "react-image";
 
 const MySwal = withReactContent(Swal);
 
@@ -37,10 +38,12 @@ const Cart: React.FC = () => {
   }, [products]);
 
   async function storeOrder() {
-    await set(ref(database, "orders/" + uuidv4()), {
+    await set(ref(database, `orders/${user.id}/` + uuidv4()), {
       username: user.name,
       userId: user.id,
       products: products,
+      total,
+      date_order: Date.now(),
     });
     clearProducts();
     Swal.fire({
@@ -74,7 +77,13 @@ const Cart: React.FC = () => {
         {products.map((product) => (
           <li>
             <div>
-              <img src={product.image} alt="Product" />
+              <Img
+                src={product.image}
+                alt={product.name}
+                crossorigin="anonymous"
+                loader={<img src="/product-default.png" />}
+                unloader={<img src="/product-default.png" />}
+              />
               <p>
                 {product.name} ({product.quantity}x)
               </p>

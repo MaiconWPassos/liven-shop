@@ -26,4 +26,11 @@ export const en = {
     labelButtonGoogle: "Log in with Google",
     labelButtonCheckout: "Finalize order",
   },
+
+  "/orders": {
+    hello: "Orders",
+    loginGoogle: "Login to continue",
+    labelButtonGoogle: "Log in with Google",
+    labelButtonCheckout: "Finalize order",
+  },
 };
