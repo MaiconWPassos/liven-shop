@@ -45,6 +45,7 @@ const Cart: React.FC = () => {
           })}
         </h1>
       )}
+
       {products.length > 0 && (
         <Link href="/checkout">
           <a className="btn-finish">{f("labelButtonCheckout")}</a>
